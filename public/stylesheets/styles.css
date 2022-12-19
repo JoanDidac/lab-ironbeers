@@ -1,7 +1,25 @@
-/*
+/* * {
 white: #f7f9f9;
 light-blue: #2081c3;
 dark-blue: #0a2c42;
 grey: #bfbfbf;
 font-family: Arial, Helvetica, sans-serif;
-*/
+} */
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 90px;
+
+}
+
+#navbar {
+    font-size: 16px;
+    color: brown;
+    list-style:none;
+}
+
+footer {
+    font-size: 30px;
+    
+
+}
