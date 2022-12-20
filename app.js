@@ -1,21 +1,3 @@
-// const { response, Router } = require('express');
-// const express = require('express');
-
-// const hbs = require('hbs');
-// const { request } = require('http');
-// // const { bdd } = require('mocha/lib/interfaces');
-// const path = require('path');
-
-// const PunkAPIWrapper = require('punkapi-javascript-wrapper');
-
-// const app = express();
-
-// const punkAPI = new PunkAPIWrapper();
-
-// app.use(express.static('public'));
-// app.set('view engine', 'hbs');
-// app.set('views', path.join (__dirname, '/views'));
-
 
 const express = require('express');
 
@@ -45,8 +27,6 @@ app.get('/beers', (req, res) => {
   })
 });
 
-
-
 app.get('/random', (req, res, next) => {
   punkAPI.getRandom()
   .then(beers => {
@@ -57,7 +37,3 @@ app.get('/random', (req, res, next) => {
 
 app.listen(3011, () => console.log('Running‍ on port 3011 sir!'));
 
-
-// app.get('/index', (req, res, next) => {
-//   res.status(200).render('index');
-// })
