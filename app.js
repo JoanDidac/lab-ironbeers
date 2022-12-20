@@ -1,3 +1,22 @@
+// const { response, Router } = require('express');
+// const express = require('express');
+
+// const hbs = require('hbs');
+// const { request } = require('http');
+// // const { bdd } = require('mocha/lib/interfaces');
+// const path = require('path');
+
+// const PunkAPIWrapper = require('punkapi-javascript-wrapper');
+
+// const app = express();
+
+// const punkAPI = new PunkAPIWrapper();
+
+// app.use(express.static('public'));
+// app.set('view engine', 'hbs');
+// app.set('views', path.join (__dirname, '/views'));
+
+
 const express = require('express');
 
 const hbs = require('hbs');
@@ -7,31 +26,38 @@ const PunkAPIWrapper = require('punkapi-javascript-wrapper');
 const app = express();
 const punkAPI = new PunkAPIWrapper();
 
-app.use(express.static('public'));
 app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views');
-// app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/views'));
 
-// app.use(express.static(path.join(__dirname, 'public'))); // mantenemos esto? 
+app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-// Register the location for handlebars partials here:
-
-// ...
-
-// Add the route handlers here:
 app.get('/', (req, res, next) => {
-  res.status(200).render('layout');
+  res.status(200).render('index');
 })
 
-app.get('/home', (req, res, next) => {
-  res.status(200).render('home');
-})
+app.get('/beers', (req, res) => {
+  punkAPI.getBeers()
+  .then(beers => {
+    res.render('beers', {birra: beers})
+  })
+  .catch(error => {
+    res.render('page500')
+  })
+});
+
+
 
 app.get('/random', (req, res, next) => {
-  res.status(200).render('random');
+  punkAPI.getRandom()
+  .then(beers => {
+    res.render('random', {beer: beers [0]})
+  })
+  .catch(error => console.log(error))
 })
 
+app.listen(3011, () => console.log('Running‍ on port 3011 sir!'));
 
-app.listen(3010, () => console.log('🏃‍ on port 3010'));
+
+// app.get('/index', (req, res, next) => {
+//   res.status(200).render('index');
+// })
